@@ -1,646 +1,883 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Handi Ibrahim — IT Infrastructure Engineer</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg: #10141b;
-    --surface: #171d27;
-    --surface-2: #1c2430;
-    --border: #29323f;
-    --text: #e7ebf0;
-    --text-muted: #8b96a7;
-    --text-faint: #566072;
-    --accent: #5eead4;
-    --accent-dim: rgba(94,234,212,0.12);
-    --warn: #f2a154;
-    --sans: 'IBM Plex Sans', -apple-system, sans-serif;
-    --mono: 'IBM Plex Mono', 'SFMono-Regular', monospace;
-    --maxw: 1120px;
-  }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Handi Ibrahim — IT Infrastructure Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #10141b;
+        --surface: #171d27;
+        --surface-2: #1c2430;
+        --border: #29323f;
+        --text: #e7ebf0;
+        --text-muted: #8b96a7;
+        --text-faint: #566072;
+        --accent: #5eead4;
+        --accent-dim: rgba(94, 234, 212, 0.12);
+        --warn: #f2a154;
+        --sans: "IBM Plex Sans", -apple-system, sans-serif;
+        --mono: "IBM Plex Mono", "SFMono-Regular", monospace;
+        --maxw: 1120px;
+      }
 
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
 
-  body{
-    margin:0;
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-  }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--sans);
+        line-height: 1.55;
+        -webkit-font-smoothing: antialiased;
+      }
 
-  a { color: inherit; }
-  ::selection { background: var(--accent-dim); color: var(--accent); }
+      a {
+        color: inherit;
+      }
+      ::selection {
+        background: var(--accent-dim);
+        color: var(--accent);
+      }
 
-  a:focus-visible, button:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-  }
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 3px;
+      }
 
-  .wrap{
-    max-width: var(--maxw);
-    margin: 0 auto;
-    padding: 0 32px;
-  }
+      .wrap {
+        max-width: var(--maxw);
+        margin: 0 auto;
+        padding: 0 32px;
+      }
 
-  /* ---------- header ---------- */
-  header{
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    background: rgba(16,20,27,0.86);
-    backdrop-filter: blur(8px);
-    border-bottom: 1px solid var(--border);
-  }
-  .nav{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding: 18px 0;
-    gap: 24px;
-    flex-wrap: wrap;
-  }
-  .nav-name{
-    font-weight: 600;
-    font-size: 15px;
-    letter-spacing: 0.01em;
-  }
-  .nav-name span{ color: var(--text-muted); font-weight: 400; }
-  .nav-links{
-    display:flex;
-    gap: 28px;
-    list-style:none;
-    margin:0; padding:0;
-    font-size: 14px;
-  }
-  .nav-links a{
-    text-decoration:none;
-    color: var(--text-muted);
-    transition: color .15s ease;
-  }
-  .nav-links a:hover{ color: var(--text); }
-  .status-pill{
-    display:flex;
-    align-items:center;
-    gap:8px;
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--text-muted);
-    border: 1px solid var(--border);
-    padding: 6px 12px;
-    border-radius: 3px;
-  }
-  .dot{
-    width:7px; height:7px;
-    border-radius:50%;
-    background: var(--accent);
-    box-shadow: 0 0 0 0 rgba(94,234,212,0.5);
-    animation: pulse 2.4s ease-out infinite;
-  }
-  @keyframes pulse{
-    0%   { box-shadow: 0 0 0 0 rgba(94,234,212,0.45); }
-    70%  { box-shadow: 0 0 0 7px rgba(94,234,212,0); }
-    100% { box-shadow: 0 0 0 0 rgba(94,234,212,0); }
-  }
+      /* ---------- header ---------- */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: rgba(16, 20, 27, 0.86);
+        backdrop-filter: blur(8px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 0;
+        gap: 24px;
+        flex-wrap: wrap;
+      }
+      .nav-name {
+        font-weight: 600;
+        font-size: 15px;
+        letter-spacing: 0.01em;
+      }
+      .nav-name span {
+        color: var(--text-muted);
+        font-weight: 400;
+      }
+      .nav-links {
+        display: flex;
+        gap: 28px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+      }
+      .nav-links a {
+        text-decoration: none;
+        color: var(--text-muted);
+        transition: color 0.15s ease;
+      }
+      .nav-links a:hover {
+        color: var(--text);
+      }
+      .status-pill {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--text-muted);
+        border: 1px solid var(--border);
+        padding: 6px 12px;
+        border-radius: 3px;
+      }
+      .dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--accent);
+        box-shadow: 0 0 0 0 rgba(94, 234, 212, 0.5);
+        animation: pulse 2.4s ease-out infinite;
+      }
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(94, 234, 212, 0.45);
+        }
+        70% {
+          box-shadow: 0 0 0 7px rgba(94, 234, 212, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(94, 234, 212, 0);
+        }
+      }
 
-  /* ---------- hero ---------- */
-  .hero{
-    position: relative;
-    padding: 96px 0 88px;
-    background-image:
-      linear-gradient(var(--border) 1px, transparent 1px),
-      linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 42px 42px;
-    background-position: center -1px;
-    -webkit-mask-image: linear-gradient(to bottom, black 0%, black 65%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 0%, black 65%, transparent 100%);
-  }
-  .hero-inner{
-    display:grid;
-    grid-template-columns: 1.2fr 0.9fr;
-    gap: 64px;
-    align-items: start;
-  }
-  .hero h1{
-    font-size: clamp(32px, 4.4vw, 50px);
-    line-height: 1.15;
-    margin: 0 0 20px;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    max-width: 15ch;
-  }
-  .hero p.lede{
-    font-size: 17px;
-    color: var(--text-muted);
-    max-width: 46ch;
-    margin: 0 0 32px;
-  }
-  .hero-ctas{ display:flex; gap: 14px; flex-wrap: wrap; }
-  .btn{
-    font-family: var(--sans);
-    font-size: 14px;
-    font-weight: 600;
-    padding: 12px 20px;
-    border-radius: 3px;
-    text-decoration: none;
-    display: inline-block;
-    transition: all .15s ease;
-    cursor: pointer;
-    border: 1px solid transparent;
-  }
-  .btn-primary{
-    background: var(--accent);
-    color: #0b1119;
-  }
-  .btn-primary:hover{ background: #7ff2df; }
-  .btn-ghost{
-    border-color: var(--border);
-    color: var(--text);
-    background: transparent;
-  }
-  .btn-ghost:hover{ border-color: var(--text-muted); }
+      /* ---------- hero ---------- */
+      .hero {
+        position: relative;
+        padding: 96px 0 88px;
+        background-image:
+          linear-gradient(var(--border) 1px, transparent 1px),
+          linear-gradient(90deg, var(--border) 1px, transparent 1px);
+        background-size: 42px 42px;
+        background-position: center -1px;
+        -webkit-mask-image: linear-gradient(
+          to bottom,
+          black 0%,
+          black 65%,
+          transparent 100%
+        );
+        mask-image: linear-gradient(
+          to bottom,
+          black 0%,
+          black 65%,
+          transparent 100%
+        );
+      }
+      .hero-inner {
+        display: grid;
+        grid-template-columns: 1.2fr 0.9fr;
+        gap: 64px;
+        align-items: start;
+      }
+      .hero h1 {
+        font-size: clamp(32px, 4.4vw, 50px);
+        line-height: 1.15;
+        margin: 0 0 20px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        max-width: 15ch;
+      }
+      .hero p.lede {
+        font-size: 17px;
+        color: var(--text-muted);
+        max-width: 46ch;
+        margin: 0 0 32px;
+      }
+      .hero-ctas {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .btn {
+        font-family: var(--sans);
+        font-size: 14px;
+        font-weight: 600;
+        padding: 12px 20px;
+        border-radius: 3px;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.15s ease;
+        cursor: pointer;
+        border: 1px solid transparent;
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: #0b1119;
+      }
+      .btn-primary:hover {
+        background: #7ff2df;
+      }
+      .btn-ghost {
+        border-color: var(--border);
+        color: var(--text);
+        background: transparent;
+      }
+      .btn-ghost:hover {
+        border-color: var(--text-muted);
+      }
 
-  /* status panel */
-  .panel{
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    overflow: hidden;
-  }
-  .panel-head{
-    padding: 12px 18px;
-    border-bottom: 1px solid var(--border);
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--text-faint);
-    display:flex;
-    justify-content: space-between;
-  }
-  .panel-row{
-    display:flex;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 13px 18px;
-    border-bottom: 1px solid var(--border);
-    font-size: 13.5px;
-  }
-  .panel-row:last-child{ border-bottom:none; }
-  .panel-row .k{
-    font-family: var(--mono);
-    color: var(--text-faint);
-    flex-shrink: 0;
-  }
-  .panel-row .v{
-    color: var(--text);
-    text-align: right;
-  }
-  .panel-row .v.accent{ color: var(--accent); }
+      /* status panel */
+      .panel {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      .panel-head {
+        padding: 12px 18px;
+        border-bottom: 1px solid var(--border);
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--text-faint);
+        display: flex;
+        justify-content: space-between;
+      }
+      .panel-row {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 13px 18px;
+        border-bottom: 1px solid var(--border);
+        font-size: 13.5px;
+      }
+      .panel-row:last-child {
+        border-bottom: none;
+      }
+      .panel-row .k {
+        font-family: var(--mono);
+        color: var(--text-faint);
+        flex-shrink: 0;
+      }
+      .panel-row .v {
+        color: var(--text);
+        text-align: right;
+      }
+      .panel-row .v.accent {
+        color: var(--accent);
+      }
 
-  /* ---------- generic section ---------- */
-  section{ padding: 84px 0; border-bottom: 1px solid var(--border); }
-  section:last-of-type{ border-bottom: none; }
-  .section-head{
-    display:flex;
-    align-items: baseline;
-    gap: 14px;
-    margin-bottom: 40px;
-  }
-  .section-head .tag{
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--text-faint);
-  }
-  .section-head h2{
-    font-size: 24px;
-    margin: 0;
-    font-weight: 600;
-  }
+      /* ---------- generic section ---------- */
+      section {
+        padding: 84px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      section:last-of-type {
+        border-bottom: none;
+      }
+      .section-head {
+        display: flex;
+        align-items: baseline;
+        gap: 14px;
+        margin-bottom: 40px;
+      }
+      .section-head .tag {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--text-faint);
+      }
+      .section-head h2 {
+        font-size: 24px;
+        margin: 0;
+        font-weight: 600;
+      }
 
-  /* about */
-  .about-grid{
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 56px;
-  }
-  .about-grid p{
-    color: var(--text-muted);
-    font-size: 15.5px;
-    margin: 0 0 16px;
-    max-width: 52ch;
-  }
-  .chips{ display:flex; flex-wrap:wrap; gap:8px; margin-top: 8px; }
-  .chip{
-    font-family: var(--mono);
-    font-size: 12px;
-    padding: 5px 10px;
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    color: var(--text-muted);
-  }
+      /* about */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 56px;
+      }
+      .about-grid p {
+        color: var(--text-muted);
+        font-size: 15.5px;
+        margin: 0 0 16px;
+        max-width: 52ch;
+      }
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 8px;
+      }
+      .chip {
+        font-family: var(--mono);
+        font-size: 12px;
+        padding: 5px 10px;
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        color: var(--text-muted);
+      }
 
-  /* stack */
-  .stack-grid{
-    display:grid;
-    grid-template-columns: repeat(4, 1fr);
-  }
-  .stack-col{
-    padding: 0 24px;
-    border-left: 1px solid var(--border);
-  }
-  .stack-col:first-child{ border-left: none; padding-left: 0; }
-  .stack-col:last-child{ padding-right: 0; }
-  .stack-col h3{
-    font-size: 13px;
-    font-weight: 600;
-    margin: 0 0 16px;
-    color: var(--text);
-  }
-  .stack-col ul{
-    list-style: none;
-    margin: 0; padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-  .stack-col li{
-    font-size: 13.5px;
-    color: var(--text-muted);
-    padding-left: 14px;
-    position: relative;
-  }
-  .stack-col li::before{
-    content: "";
-    position: absolute;
-    left: 0; top: 7px;
-    width: 5px; height: 5px;
-    background: var(--accent);
-    border-radius: 1px;
-    opacity: 0.75;
-  }
+      /* stack */
+      .stack-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+      }
+      .stack-col {
+        padding: 0 24px;
+        border-left: 1px solid var(--border);
+      }
+      .stack-col:first-child {
+        border-left: none;
+        padding-left: 0;
+      }
+      .stack-col:last-child {
+        padding-right: 0;
+      }
+      .stack-col h3 {
+        font-size: 13px;
+        font-weight: 600;
+        margin: 0 0 16px;
+        color: var(--text);
+      }
+      .stack-col ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .stack-col li {
+        font-size: 13.5px;
+        color: var(--text-muted);
+        padding-left: 14px;
+        position: relative;
+      }
+      .stack-col li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 7px;
+        width: 5px;
+        height: 5px;
+        background: var(--accent);
+        border-radius: 1px;
+        opacity: 0.75;
+      }
 
-  /* experience log */
-  .log{ display:flex; flex-direction: column; }
-  .log-entry{
-    display:grid;
-    grid-template-columns: 110px 1fr;
-    gap: 24px;
-    padding: 22px 0;
-    border-top: 1px solid var(--border);
-  }
-  .log-entry:first-child{ border-top: none; }
-  .log-tag{
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    padding-top: 2px;
-  }
-  .log-body h3{
-    font-size: 15.5px;
-    margin: 0 0 6px;
-    font-weight: 600;
-  }
-  .log-body p{
-    font-size: 14px;
-    color: var(--text-muted);
-    margin: 0;
-    max-width: 62ch;
-  }
+      /* experience log */
+      .log {
+        display: flex;
+        flex-direction: column;
+      }
+      .log-entry {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        gap: 24px;
+        padding: 22px 0;
+        border-top: 1px solid var(--border);
+      }
+      .log-entry:first-child {
+        border-top: none;
+      }
+      .log-tag {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--accent);
+        padding-top: 2px;
+      }
+      .log-body h3 {
+        font-size: 15.5px;
+        margin: 0 0 6px;
+        font-weight: 600;
+      }
+      .log-body p {
+        font-size: 14px;
+        color: var(--text-muted);
+        margin: 0;
+        max-width: 62ch;
+      }
 
-  /* projects */
-  .projects{ display:flex; flex-direction: column; gap: 1px; }
-  .project{
-    display:grid;
-    grid-template-columns: 1fr auto;
-    gap: 20px;
-    align-items: center;
-    padding: 22px 20px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-    border-radius: 4px;
-    margin-bottom: 10px;
-    border-left: 3px solid var(--border);
-    transition: border-left-color .15s ease, transform .15s ease;
-  }
-  .project:hover{
-    border-left-color: var(--accent);
-    transform: translateX(2px);
-  }
-  .project h3{
-    font-size: 15.5px;
-    margin: 0 0 6px;
-    font-weight: 600;
-  }
-  .project p{
-    font-size: 13.5px;
-    color: var(--text-muted);
-    margin: 0 0 10px;
-    max-width: 62ch;
-  }
-  .project .tags{ display:flex; gap:6px; flex-wrap: wrap; }
-  .project .tags span{
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--text-faint);
-    border: 1px solid var(--border);
-    padding: 3px 7px;
-    border-radius: 3px;
-  }
+      /* projects */
+      .projects {
+        display: flex;
+        flex-direction: column;
+        gap: 1px;
+      }
+      .project {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 20px;
+        align-items: center;
+        padding: 22px 20px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+        border-radius: 4px;
+        margin-bottom: 10px;
+        border-left: 3px solid var(--border);
+        transition:
+          border-left-color 0.15s ease,
+          transform 0.15s ease;
+      }
+      .project:hover {
+        border-left-color: var(--accent);
+        transform: translateX(2px);
+      }
+      .project h3 {
+        font-size: 15.5px;
+        margin: 0 0 6px;
+        font-weight: 600;
+      }
+      .project p {
+        font-size: 13.5px;
+        color: var(--text-muted);
+        margin: 0 0 10px;
+        max-width: 62ch;
+      }
+      .project .tags {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      .project .tags span {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--text-faint);
+        border: 1px solid var(--border);
+        padding: 3px 7px;
+        border-radius: 3px;
+      }
 
-  /* contact */
-  .contact-grid{
-    display:grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 56px;
-    align-items: center;
-  }
-  .contact-grid h2{
-    font-size: 28px;
-    margin: 0 0 14px;
-    font-weight: 700;
-    max-width: 14ch;
-  }
-  .contact-grid p{
-    color: var(--text-muted);
-    font-size: 15px;
-    max-width: 48ch;
-    margin: 0;
-  }
-  .contact-list{
-    display:flex;
-    flex-direction: column;
-    gap: 0;
-  }
-  .contact-list a{
-    display:flex;
-    justify-content: space-between;
-    align-items:center;
-    padding: 16px 0;
-    border-top: 1px solid var(--border);
-    text-decoration: none;
-    font-size: 14.5px;
-  }
-  .contact-list a:last-child{ padding-bottom: 0; }
-  .contact-list .k{ color: var(--text-muted); font-family: var(--mono); font-size: 12.5px; }
-  .contact-list .v{ color: var(--text); transition: color .15s ease; }
-  .contact-list a:hover .v{ color: var(--accent); }
+      /* contact */
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 56px;
+        align-items: center;
+      }
+      .contact-grid h2 {
+        font-size: 28px;
+        margin: 0 0 14px;
+        font-weight: 700;
+        max-width: 14ch;
+      }
+      .contact-grid p {
+        color: var(--text-muted);
+        font-size: 15px;
+        max-width: 48ch;
+        margin: 0;
+      }
+      .contact-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .contact-list a {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 16px 0;
+        border-top: 1px solid var(--border);
+        text-decoration: none;
+        font-size: 14.5px;
+      }
+      .contact-list a:last-child {
+        padding-bottom: 0;
+      }
+      .contact-list .k {
+        color: var(--text-muted);
+        font-family: var(--mono);
+        font-size: 12.5px;
+      }
+      .contact-list .v {
+        color: var(--text);
+        transition: color 0.15s ease;
+      }
+      .contact-list a:hover .v {
+        color: var(--accent);
+      }
 
-  footer{
-    padding: 28px 0 40px;
-    display:flex;
-    justify-content: space-between;
-    font-size: 12.5px;
-    color: var(--text-faint);
-    font-family: var(--mono);
-    flex-wrap: wrap;
-    gap: 10px;
-  }
+      footer {
+        padding: 28px 0 40px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 12.5px;
+        color: var(--text-faint);
+        font-family: var(--mono);
+        flex-wrap: wrap;
+        gap: 10px;
+      }
 
-  /* ---------- responsive ---------- */
-  @media (max-width: 860px){
-    .hero-inner{ grid-template-columns: 1fr; gap: 40px; }
-    .about-grid{ grid-template-columns: 1fr; gap: 24px; }
-    .stack-grid{ grid-template-columns: 1fr 1fr; row-gap: 32px; }
-    .stack-col{ border-left: none; padding: 0; }
-    .stack-col:nth-child(odd){ padding-right: 12px; }
-    .stack-col:nth-child(even){ padding-left: 12px; border-left: 1px solid var(--border); }
-    .contact-grid{ grid-template-columns: 1fr; gap: 32px; }
-    .log-entry{ grid-template-columns: 1fr; gap: 6px; }
-    .project{ grid-template-columns: 1fr; }
-  }
-  @media (max-width: 560px){
-    .wrap{ padding: 0 20px; }
-    .stack-grid{ grid-template-columns: 1fr; }
-    .stack-col:nth-child(even){ border-left: none; padding-left: 0; }
-    .nav-links{ gap: 16px; }
-    section{ padding: 56px 0; }
-    .hero{ padding: 64px 0 56px; }
-  }
+      /* ---------- responsive ---------- */
+      @media (max-width: 860px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 24px;
+        }
+        .stack-grid {
+          grid-template-columns: 1fr 1fr;
+          row-gap: 32px;
+        }
+        .stack-col {
+          border-left: none;
+          padding: 0;
+        }
+        .stack-col:nth-child(odd) {
+          padding-right: 12px;
+        }
+        .stack-col:nth-child(even) {
+          padding-left: 12px;
+          border-left: 1px solid var(--border);
+        }
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+        .log-entry {
+          grid-template-columns: 1fr;
+          gap: 6px;
+        }
+        .project {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 560px) {
+        .wrap {
+          padding: 0 20px;
+        }
+        .stack-grid {
+          grid-template-columns: 1fr;
+        }
+        .stack-col:nth-child(even) {
+          border-left: none;
+          padding-left: 0;
+        }
+        .nav-links {
+          gap: 16px;
+        }
+        section {
+          padding: 56px 0;
+        }
+        .hero {
+          padding: 64px 0 56px;
+        }
+      }
 
-  @media (prefers-reduced-motion: reduce){
-    html{ scroll-behavior: auto; }
-    .dot{ animation: none; }
-    .project{ transition: none; }
-  }
-</style>
-</head>
-<body>
-
-<header>
-  <div class="wrap nav">
-    <div class="nav-name">Handi Ibrahim <span>/ Hans</span></div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#stack">Stack</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="status-pill"><span class="dot"></span> Systems operational</div>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="wrap hero-inner">
-    <div>
-      <h1>Infrastructure that stays up, so nobody has to think about it.</h1>
-      <p class="lede">I'm an IT Infrastructure Engineer at PT Era Caring Indonesia, the company behind Apotek Wellings. I keep servers, networks, and deployments running — from Linux boxes and Docker stacks to MikroTik routers and Cloudflare edge configuration.</p>
-      <div class="hero-ctas">
-        <a href="#projects" class="btn btn-primary">View projects</a>
-        <a href="#contact" class="btn btn-ghost">Get in touch</a>
-      </div>
-    </div>
-    <div class="panel">
-      <div class="panel-head"><span>status.log</span><span>live</span></div>
-      <div class="panel-row"><span class="k">ROLE</span><span class="v">IT Infrastructure Engineer</span></div>
-      <div class="panel-row"><span class="k">COMPANY</span><span class="v">PT Era Caring Indonesia</span></div>
-      <div class="panel-row"><span class="k">PRODUCT</span><span class="v">Apotek Wellings</span></div>
-      <div class="panel-row"><span class="k">LOCATION</span><span class="v">Jakarta, Indonesia</span></div>
-      <div class="panel-row"><span class="k">GITHUB</span><span class="v">@Hans-Gav</span></div>
-      <div class="panel-row"><span class="k">STATUS</span><span class="v accent">● Available</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="wrap about-grid">
-    <div>
-      <div class="section-head"><h2>About</h2></div>
-      <p>What started as IT support has grown into full infrastructure engineering — server administration, container orchestration, and network architecture for a company that can't afford downtime, since it runs a pharmacy platform people depend on.</p>
-      <p>Day to day that means Linux and Windows server administration, Docker and Docker Compose deployments, CI/CD pipelines with GitHub Actions, MikroTik network configuration, and Cloudflare's edge stack — DNS, Tunnels, and Zero Trust — plus supporting the internal applications built on top of it all.</p>
-    </div>
-    <div>
-      <div class="chips">
-        <span class="chip">Linux Administration</span>
-        <span class="chip">Windows Server</span>
-        <span class="chip">Docker & Compose</span>
-        <span class="chip">GitHub Actions</span>
-        <span class="chip">MikroTik / RouterOS</span>
-        <span class="chip">Cloudflare Zero Trust</span>
-        <span class="chip">Cloudflare Tunnels</span>
-        <span class="chip">Network Monitoring</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="stack">
-  <div class="wrap">
-    <div class="section-head"><h2>Stack</h2></div>
-    <div class="stack-grid">
-      <div class="stack-col">
-        <h3>Systems &amp; OS</h3>
-        <ul>
-          <li>Linux server administration</li>
-          <li>Windows Server administration</li>
-          <li>Bash &amp; PowerShell scripting</li>
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .dot {
+          animation: none;
+        }
+        .project {
+          transition: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="wrap nav">
+        <div class="nav-name">Handi Ibrahim <span>/ Hans</span></div>
+        <ul class="nav-links">
+          <li><a href="#about">About</a></li>
+          <li><a href="#stack">Stack</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
+        <div class="status-pill">
+          <span class="dot"></span> Systems operational
+        </div>
       </div>
-      <div class="stack-col">
-        <h3>Containers &amp; Delivery</h3>
-        <ul>
-          <li>Docker &amp; Docker Compose</li>
-          <li>CI/CD with GitHub Actions</li>
-          <li>Application deployment support</li>
-        </ul>
-      </div>
-      <div class="stack-col">
-        <h3>Networking</h3>
-        <ul>
-          <li>MikroTik (RouterOS)</li>
-          <li>VPN — L2TP/IPsec</li>
-          <li>Tailscale subnet routing</li>
-        </ul>
-      </div>
-      <div class="stack-col">
-        <h3>Cloud &amp; Edge</h3>
-        <ul>
-          <li>Cloudflare DNS</li>
-          <li>Cloudflare Tunnels</li>
-          <li>Cloudflare Zero Trust</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+    </header>
 
-<section id="experience">
-  <div class="wrap">
-    <div class="section-head"><h2>Scope of work</h2></div>
-    <div class="log">
-      <div class="log-entry">
-        <div class="log-tag">[INFRA]</div>
-        <div class="log-body">
-          <h3>Server &amp; container administration</h3>
-          <p>Manage Linux and Windows servers running production, staging, and development workloads, with Docker and Docker Compose for application deployment.</p>
+    <section class="hero">
+      <div class="wrap hero-inner">
+        <div>
+          <h1>
+            Infrastructure that stays up, so nobody has to think about it.
+          </h1>
+          <p class="lede">
+            I'm an IT Infrastructure Engineer at PT Era Caring Indonesia, the
+            company behind Apotek Wellings. I keep servers, networks, and
+            deployments running — from Linux boxes and Docker stacks to MikroTik
+            routers and Cloudflare edge configuration.
+          </p>
+          <div class="hero-ctas">
+            <a href="#projects" class="btn btn-primary">View projects</a>
+            <a href="#contact" class="btn btn-ghost">Get in touch</a>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head"><span>status.log</span><span>live</span></div>
+          <div class="panel-row">
+            <span class="k">ROLE</span
+            ><span class="v">IT Infrastructure Engineer</span>
+          </div>
+          <div class="panel-row">
+            <span class="k">COMPANY</span
+            ><span class="v">PT Era Caring Indonesia</span>
+          </div>
+          <div class="panel-row">
+            <span class="k">PRODUCT</span><span class="v">Apotek Wellings</span>
+          </div>
+          <div class="panel-row">
+            <span class="k">LOCATION</span
+            ><span class="v">Jakarta, Indonesia</span>
+          </div>
+          <div class="panel-row">
+            <span class="k">GITHUB</span><span class="v">@Hans-Gav</span>
+          </div>
+          <div class="panel-row">
+            <span class="k">STATUS</span
+            ><span class="v accent">● Available</span>
+          </div>
         </div>
       </div>
-      <div class="log-entry">
-        <div class="log-tag">[NETWORK]</div>
-        <div class="log-body">
-          <h3>Network engineering</h3>
-          <p>Configure and maintain MikroTik routers and switches, VPN access, and remote connectivity across office and store locations.</p>
-        </div>
-      </div>
-      <div class="log-entry">
-        <div class="log-tag">[EDGE]</div>
-        <div class="log-body">
-          <h3>Cloudflare &amp; DNS</h3>
-          <p>Handle DNS, Tunnels, and Zero Trust access policies for the Wellings domain ecosystem, including SSL/TLS certificate management.</p>
-        </div>
-      </div>
-      <div class="log-entry">
-        <div class="log-tag">[CI/CD]</div>
-        <div class="log-body">
-          <h3>Delivery pipelines</h3>
-          <p>Build and maintain GitHub Actions workflows to support consistent, repeatable application deployment.</p>
-        </div>
-      </div>
-      <div class="log-entry">
-        <div class="log-tag">[SUPPORT]</div>
-        <div class="log-body">
-          <h3>Application &amp; growth</h3>
-          <p>Support internal application development where infrastructure and app work meet — a role that has grown from IT support into infrastructure engineering.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section id="projects">
-  <div class="wrap">
-    <div class="section-head"><h2>Projects</h2></div>
-    <div class="projects">
-      <div class="project">
+    <section id="about">
+      <div class="wrap about-grid">
         <div>
-          <h3>ContainIQ</h3>
-          <p>Custom Flask-based container monitoring dashboard that polls servers over SSH to track container health across infrastructure.</p>
-          <div class="tags"><span>Flask</span><span>Docker</span><span>SSH</span></div>
+          <div class="section-head"><h2>About</h2></div>
+          <p>
+            What started as IT support has grown into full infrastructure
+            engineering — server administration, container orchestration, and
+            network architecture for a company that can't afford downtime, since
+            it runs a pharmacy platform people depend on.
+          </p>
+          <p>
+            Day to day that means Linux and Windows server administration,
+            Docker and Docker Compose deployments, CI/CD pipelines with GitHub
+            Actions, MikroTik network configuration, and Cloudflare's edge stack
+            — DNS, Tunnels, and Zero Trust — plus supporting the internal
+            applications built on top of it all.
+          </p>
+        </div>
+        <div>
+          <div class="chips">
+            <span class="chip">Linux Administration</span>
+            <span class="chip">Windows Server</span>
+            <span class="chip">Docker & Compose</span>
+            <span class="chip">GitHub Actions</span>
+            <span class="chip">MikroTik / RouterOS</span>
+            <span class="chip">Cloudflare Zero Trust</span>
+            <span class="chip">Cloudflare Tunnels</span>
+            <span class="chip">Network Monitoring</span>
+          </div>
         </div>
       </div>
-      <div class="project">
-        <div>
-          <h3>GLPI Helpdesk</h3>
-          <p>Deployed and maintained a GLPI helpdesk instance in Docker to centralize internal IT support requests for Apotek Wellings.</p>
-          <div class="tags"><span>GLPI</span><span>Docker</span><span>Windows/WSL2</span></div>
-        </div>
-      </div>
-      <div class="project">
-        <div>
-          <h3>Tailscale subnet router</h3>
-          <p>Set up a Tailscale subnet router to give remote access into the office network without traditional VPN overhead.</p>
-          <div class="tags"><span>Tailscale</span><span>Networking</span></div>
-        </div>
-      </div>
-      <div class="project">
-        <div>
-          <h3>Backup &amp; restore mechanism</h3>
-          <p>Designed a centralized backup and restore process covering databases, applications, and infrastructure configuration.</p>
-          <div class="tags"><span>Backup</span><span>Automation</span></div>
-        </div>
-      </div>
-      <div class="project">
-        <div>
-          <h3>L2TP/IPsec VPN on MikroTik</h3>
-          <p>Configured a full L2TP/IPsec VPN setup on MikroTik via Winbox — server, profile, secrets, IP pool, and firewall rules.</p>
-          <div class="tags"><span>MikroTik</span><span>VPN</span></div>
-        </div>
-      </div>
-      <div class="project">
-        <div>
-          <h3>Manageable switch rollout</h3>
-          <p>Planned the replacement of unmanaged switches across 14 store locations with manageable switches for centralized monitoring.</p>
-          <div class="tags"><span>Networking</span><span>Rollout</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section id="contact">
-  <div class="wrap contact-grid">
-    <div>
-      <h2>Let's talk infrastructure.</h2>
-      <p>Open to conversations about infrastructure, networking, or systems work. Reach out through any of the channels here.</p>
-    </div>
-    <div class="contact-list">
-      <a href="mailto:handi.ibrahim@nsl.co.id"><span class="k">EMAIL</span><span class="v">handi.ibrahim@nsl.co.id</span></a>
-      <a href="https://github.com/Hans-Gav" target="_blank" rel="noopener"><span class="k">GITHUB</span><span class="v">github.com/Hans-Gav</span></a>
-      <a href="#top"><span class="k">LOCATION</span><span class="v">Jakarta, Indonesia</span></a>
-    </div>
-  </div>
-</section>
+    <section id="stack">
+      <div class="wrap">
+        <div class="section-head"><h2>Stack</h2></div>
+        <div class="stack-grid">
+          <div class="stack-col">
+            <h3>Systems &amp; OS</h3>
+            <ul>
+              <li>Linux server administration</li>
+              <li>Windows Server administration</li>
+              <li>Bash &amp; PowerShell scripting</li>
+            </ul>
+          </div>
+          <div class="stack-col">
+            <h3>Containers &amp; Delivery</h3>
+            <ul>
+              <li>Docker &amp; Docker Compose</li>
+              <li>CI/CD with GitHub Actions</li>
+              <li>Application deployment support</li>
+            </ul>
+          </div>
+          <div class="stack-col">
+            <h3>Networking</h3>
+            <ul>
+              <li>MikroTik (RouterOS)</li>
+              <li>VPN — L2TP/IPsec</li>
+              <li>Tailscale subnet routing</li>
+            </ul>
+          </div>
+          <div class="stack-col">
+            <h3>Cloud &amp; Edge</h3>
+            <ul>
+              <li>Cloudflare DNS</li>
+              <li>Cloudflare Tunnels</li>
+              <li>Cloudflare Zero Trust</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<footer class="wrap">
-  <span>© 2026 Handi Ibrahim</span>
-  <span>Built with care for uptime.</span>
-</footer>
+    <section id="experience">
+      <div class="wrap">
+        <div class="section-head"><h2>Scope of work</h2></div>
+        <div class="log">
+          <div class="log-entry">
+            <div class="log-tag">[INFRA]</div>
+            <div class="log-body">
+              <h3>Server &amp; container administration</h3>
+              <p>
+                Manage Linux and Windows servers running production, staging,
+                and development workloads, with Docker and Docker Compose for
+                application deployment.
+              </p>
+            </div>
+          </div>
+          <div class="log-entry">
+            <div class="log-tag">[NETWORK]</div>
+            <div class="log-body">
+              <h3>Network engineering</h3>
+              <p>
+                Configure and maintain MikroTik routers and switches, VPN
+                access, and remote connectivity across office and store
+                locations.
+              </p>
+            </div>
+          </div>
+          <div class="log-entry">
+            <div class="log-tag">[EDGE]</div>
+            <div class="log-body">
+              <h3>Cloudflare &amp; DNS</h3>
+              <p>
+                Handle DNS, Tunnels, and Zero Trust access policies for the
+                Wellings domain ecosystem, including SSL/TLS certificate
+                management.
+              </p>
+            </div>
+          </div>
+          <div class="log-entry">
+            <div class="log-tag">[CI/CD]</div>
+            <div class="log-body">
+              <h3>Delivery pipelines</h3>
+              <p>
+                Build and maintain GitHub Actions workflows to support
+                consistent, repeatable application deployment.
+              </p>
+            </div>
+          </div>
+          <div class="log-entry">
+            <div class="log-tag">[SUPPORT]</div>
+            <div class="log-body">
+              <h3>Application &amp; growth</h3>
+              <p>
+                Support internal application development where infrastructure
+                and app work meet — a role that has grown from IT support into
+                infrastructure engineering.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-</body>
+    <section id="projects">
+      <div class="wrap">
+        <div class="section-head"><h2>Projects</h2></div>
+        <div class="projects">
+          <div class="project">
+            <div>
+              <h3>ContainIQ</h3>
+              <p>
+                Custom Flask-based container monitoring dashboard that polls
+                servers over SSH to track container health across
+                infrastructure.
+              </p>
+              <div class="tags">
+                <span>Flask</span><span>Docker</span><span>SSH</span>
+              </div>
+            </div>
+          </div>
+          <div class="project">
+            <div>
+              <h3>N8N Self Hosted</h3>
+              <p>N8N Self-hosted for Automation Teams</p>
+              <div class="tags">
+                <span>Self-Hosted</span><span>Docker</span><span>SSH</span>
+              </div>
+            </div>
+          </div>
+          <div class="project">
+            <div>
+              <h3>GLPI Helpdesk</h3>
+              <p>
+                Deployed and maintained a GLPI helpdesk instance in Docker to
+                centralize internal IT support requests for Apotek Wellings.
+              </p>
+              <div class="tags">
+                <span>GLPI</span><span>Docker</span><span>Windows/WSL2</span>
+              </div>
+            </div>
+          </div>
+          <div class="project">
+            <div>
+              <h3>Tailscale subnet router</h3>
+              <p>
+                Set up a Tailscale subnet router to give remote access into the
+                office network without traditional VPN overhead.
+              </p>
+              <div class="tags">
+                <span>Tailscale</span><span>Networking</span>
+              </div>
+            </div>
+          </div>
+          <div class="project">
+            <div>
+              <h3>Backup &amp; restore mechanism</h3>
+              <p>
+                Designed a centralized backup and restore process covering
+                databases, applications, and infrastructure configuration.
+              </p>
+              <div class="tags"><span>Backup</span><span>Automation</span></div>
+            </div>
+          </div>
+          <div class="project">
+            <div>
+              <h3>L2TP/IPsec VPN on MikroTik</h3>
+              <p>
+                Configured a full L2TP/IPsec VPN setup on MikroTik via Winbox —
+                server, profile, secrets, IP pool, and firewall rules.
+              </p>
+              <div class="tags"><span>MikroTik</span><span>VPN</span></div>
+            </div>
+          </div>
+          <div class="project">
+            <div>
+              <h3>Manageable switch rollout</h3>
+              <p>
+                Planned the replacement of unmanaged switches across 14 store
+                locations with manageable switches for centralized monitoring.
+              </p>
+              <div class="tags">
+                <span>Networking</span><span>Rollout</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap contact-grid">
+        <div>
+          <h2>Let's talk infrastructure.</h2>
+          <p>
+            Open to conversations about infrastructure, networking, or systems
+            work. Reach out through any of the channels here.
+          </p>
+        </div>
+        <div class="contact-list">
+          <a href="mailto:handi.ibrahim@nsl.co.id"
+            ><span class="k">EMAIL</span
+            ><span class="v">handi.ibrahim@nsl.co.id</span></a
+          >
+          <a href="https://github.com/Hans-Gav" target="_blank" rel="noopener"
+            ><span class="k">GITHUB</span
+            ><span class="v">github.com/Hans-Gav</span></a
+          >
+          <a href="#top"
+            ><span class="k">LOCATION</span
+            ><span class="v">Jakarta, Indonesia</span></a
+          >
+        </div>
+      </div>
+    </section>
+
+    <footer class="wrap">
+      <span>© 2026 Handi Ibrahim</span>
+      <span>Built with care for uptime.</span>
+    </footer>
+  </body>
 </html>
