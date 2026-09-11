@@ -384,37 +384,44 @@
         max-width: 62ch;
       }
 
-      /* projects */
+      /* ---------- projects (expandable) ---------- */
       .projects {
         display: flex;
         flex-direction: column;
-        gap: 1px;
+        gap: 10px;
       }
       .project {
+        border: 1px solid var(--border);
+        background: var(--surface);
+        border-radius: 4px;
+        border-left: 3px solid var(--border);
+        transition: border-left-color 0.15s ease;
+        overflow: hidden;
+      }
+      .project.is-open,
+      .project:hover {
+        border-left-color: var(--accent);
+      }
+      .project-toggle {
+        width: 100%;
         display: grid;
         grid-template-columns: 1fr auto;
         gap: 20px;
         align-items: center;
         padding: 22px 20px;
-        border: 1px solid var(--border);
-        background: var(--surface);
-        border-radius: 4px;
-        margin-bottom: 10px;
-        border-left: 3px solid var(--border);
-        transition:
-          border-left-color 0.15s ease,
-          transform 0.15s ease;
+        background: transparent;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        font-family: inherit;
+        color: inherit;
       }
-      .project:hover {
-        border-left-color: var(--accent);
-        transform: translateX(2px);
-      }
-      .project h3 {
+      .project-toggle h3 {
         font-size: 15.5px;
         margin: 0 0 6px;
         font-weight: 600;
       }
-      .project p {
+      .project-toggle p {
         font-size: 13.5px;
         color: var(--text-muted);
         margin: 0 0 10px;
@@ -432,6 +439,51 @@
         border: 1px solid var(--border);
         padding: 3px 7px;
         border-radius: 3px;
+      }
+      .project-chevron {
+        width: 22px;
+        height: 22px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-faint);
+        transition: transform 0.2s ease;
+      }
+      .project.is-open .project-chevron {
+        transform: rotate(45deg);
+        color: var(--accent);
+      }
+      .project-panel {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.25s ease;
+      }
+      .project.is-open .project-panel {
+        grid-template-rows: 1fr;
+      }
+      .project-panel-inner {
+        min-height: 0;
+        overflow: hidden;
+      }
+      .project-detail {
+        padding: 0 20px 22px;
+        border-top: 1px solid var(--border);
+        margin-top: 2px;
+        padding-top: 18px;
+      }
+      .project-detail .shot {
+        width: 100%;
+        border-radius: 4px;
+        border: 1px solid var(--border);
+        display: block;
+        background: var(--surface-2);
+      }
+      .project-detail .shot-caption {
+        font-family: var(--mono);
+        font-size: 11.5px;
+        color: var(--text-faint);
+        margin: 8px 0 0;
       }
 
       /* contact */
@@ -527,8 +579,12 @@
           grid-template-columns: 1fr;
           gap: 6px;
         }
-        .project {
+        .project-toggle {
           grid-template-columns: 1fr;
+          gap: 12px;
+        }
+        .project-chevron {
+          justify-self: flex-end;
         }
       }
       @media (max-width: 560px) {
@@ -560,7 +616,8 @@
         .dot {
           animation: none;
         }
-        .project {
+        .project-panel,
+        .project-chevron {
           transition: none;
         }
       }
@@ -767,81 +824,223 @@
       <div class="wrap">
         <div class="section-head"><h2>Projects</h2></div>
         <div class="projects">
+          <!-- Repeat this .project block per project. Swap the <img src> for the real
+               screenshot (e.g. a raw.githubusercontent.com or jsdelivr CDN link). -->
+
           <div class="project">
-            <div>
-              <h3>ContainIQ</h3>
-              <p>
-                Custom Flask-based container monitoring dashboard that polls
-                servers over SSH to track container health across
-                infrastructure.
-              </p>
-              <div class="tags">
-                <span>Flask</span><span>Docker</span><span>SSH</span>
+            <button class="project-toggle" aria-expanded="false">
+              <div>
+                <h3>ContainIQ</h3>
+                <p>
+                  Custom Flask-based container monitoring dashboard that polls
+                  servers over SSH to track container health across
+                  infrastructure.
+                </p>
+                <div class="tags">
+                  <span>Flask</span><span>Docker</span><span>SSH</span>
+                </div>
+              </div>
+              <span class="project-chevron">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="project-panel">
+              <div class="project-panel-inner">
+                <div class="project-detail">
+                  <img
+                    class="shot"
+                    src="https://placehold.co/1200x680/1c2430/566072?text=ContainIQ+dashboard&font=roboto"
+                    alt="Screenshot dashboard ContainIQ"
+                  />
+                  <p class="shot-caption">// screenshot dummy — ganti src di atas</p>
+                </div>
               </div>
             </div>
           </div>
+
           <div class="project">
-            <div>
-              <h3>N8N Self Hosted</h3>
-              <p>N8N Self-hosted for Automation Teams</p>
-              <div class="tags">
-                <span>Self-Hosted</span><span>Docker</span><span>SSH</span>
+            <button class="project-toggle" aria-expanded="false">
+              <div>
+                <h3>N8N Self Hosted</h3>
+                <p>N8N Self-hosted for Automation Teams</p>
+                <div class="tags">
+                  <span>Self-Hosted</span><span>Docker</span><span>SSH</span>
+                </div>
+              </div>
+              <span class="project-chevron">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="project-panel">
+              <div class="project-panel-inner">
+                <div class="project-detail">
+                  <img
+                    class="shot"
+                    src="https://placehold.co/1200x680/1c2430/566072?text=n8n+workflow&font=roboto"
+                    alt="Screenshot workflow n8n"
+                  />
+                  <p class="shot-caption">// screenshot dummy — ganti src di atas</p>
+                </div>
               </div>
             </div>
           </div>
+
           <div class="project">
-            <div>
-              <h3>GLPI Helpdesk</h3>
-              <p>
-                Deployed and maintained a GLPI helpdesk instance in Docker to
-                centralize internal IT support requests for Apotek Wellings.
-              </p>
-              <div class="tags">
-                <span>GLPI</span><span>Docker</span><span>Windows/WSL2</span>
+            <button class="project-toggle" aria-expanded="false">
+              <div>
+                <h3>GLPI Helpdesk</h3>
+                <p>
+                  Deployed and maintained a GLPI helpdesk instance in Docker to
+                  centralize internal IT support requests for Apotek Wellings.
+                </p>
+                <div class="tags">
+                  <span>GLPI</span><span>Docker</span><span>Windows/WSL2</span>
+                </div>
+              </div>
+              <span class="project-chevron">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="project-panel">
+              <div class="project-panel-inner">
+                <div class="project-detail">
+                  <img
+                    class="shot"
+                    src="https://placehold.co/1200x680/1c2430/566072?text=GLPI+helpdesk&font=roboto"
+                    alt="Screenshot GLPI helpdesk"
+                  />
+                  <p class="shot-caption">// screenshot dummy — ganti src di atas</p>
+                </div>
               </div>
             </div>
           </div>
+
           <div class="project">
-            <div>
-              <h3>Tailscale subnet router</h3>
-              <p>
-                Set up a Tailscale subnet router to give remote access into the
-                office network without traditional VPN overhead.
-              </p>
-              <div class="tags">
-                <span>Tailscale</span><span>Networking</span>
+            <button class="project-toggle" aria-expanded="false">
+              <div>
+                <h3>Tailscale subnet router</h3>
+                <p>
+                  Set up a Tailscale subnet router to give remote access into the
+                  office network without traditional VPN overhead.
+                </p>
+                <div class="tags">
+                  <span>Tailscale</span><span>Networking</span>
+                </div>
+              </div>
+              <span class="project-chevron">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="project-panel">
+              <div class="project-panel-inner">
+                <div class="project-detail">
+                  <img
+                    class="shot"
+                    src="https://placehold.co/1200x680/1c2430/566072?text=Tailscale+subnet+router&font=roboto"
+                    alt="Screenshot Tailscale subnet router"
+                  />
+                  <p class="shot-caption">// screenshot dummy — ganti src di atas</p>
+                </div>
               </div>
             </div>
           </div>
+
           <div class="project">
-            <div>
-              <h3>Backup &amp; restore mechanism</h3>
-              <p>
-                Designed a centralized backup and restore process covering
-                databases, applications, and infrastructure configuration.
-              </p>
-              <div class="tags"><span>Backup</span><span>Automation</span></div>
+            <button class="project-toggle" aria-expanded="false">
+              <div>
+                <h3>Backup &amp; restore mechanism</h3>
+                <p>
+                  Designed a centralized backup and restore process covering
+                  databases, applications, and infrastructure configuration.
+                </p>
+                <div class="tags"><span>Backup</span><span>Automation</span></div>
+              </div>
+              <span class="project-chevron">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="project-panel">
+              <div class="project-panel-inner">
+                <div class="project-detail">
+                  <img
+                    class="shot"
+                    src="https://placehold.co/1200x680/1c2430/566072?text=Backup+%26+restore&font=roboto"
+                    alt="Screenshot backup dan restore mechanism"
+                  />
+                  <p class="shot-caption">// screenshot dummy — ganti src di atas</p>
+                </div>
+              </div>
             </div>
           </div>
+
           <div class="project">
-            <div>
-              <h3>L2TP/IPsec VPN on MikroTik</h3>
-              <p>
-                Configured a full L2TP/IPsec VPN setup on MikroTik via Winbox —
-                server, profile, secrets, IP pool, and firewall rules.
-              </p>
-              <div class="tags"><span>MikroTik</span><span>VPN</span></div>
+            <button class="project-toggle" aria-expanded="false">
+              <div>
+                <h3>L2TP/IPsec VPN on MikroTik</h3>
+                <p>
+                  Configured a full L2TP/IPsec VPN setup on MikroTik via Winbox —
+                  server, profile, secrets, IP pool, and firewall rules.
+                </p>
+                <div class="tags"><span>MikroTik</span><span>VPN</span></div>
+              </div>
+              <span class="project-chevron">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="project-panel">
+              <div class="project-panel-inner">
+                <div class="project-detail">
+                  <img
+                    class="shot"
+                    src="https://placehold.co/1200x680/1c2430/566072?text=MikroTik+L2TP%2FIPsec&font=roboto"
+                    alt="Screenshot konfigurasi L2TP/IPsec VPN MikroTik"
+                  />
+                  <p class="shot-caption">// screenshot dummy — ganti src di atas</p>
+                </div>
+              </div>
             </div>
           </div>
+
           <div class="project">
-            <div>
-              <h3>Manageable switch rollout</h3>
-              <p>
-                Planned the replacement of unmanaged switches across 14 store
-                locations with manageable switches for centralized monitoring.
-              </p>
-              <div class="tags">
-                <span>Networking</span><span>Rollout</span>
+            <button class="project-toggle" aria-expanded="false">
+              <div>
+                <h3>Manageable switch rollout</h3>
+                <p>
+                  Planned the replacement of unmanaged switches across 14 store
+                  locations with manageable switches for centralized monitoring.
+                </p>
+                <div class="tags">
+                  <span>Networking</span><span>Rollout</span>
+                </div>
+              </div>
+              <span class="project-chevron">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="project-panel">
+              <div class="project-panel-inner">
+                <div class="project-detail">
+                  <img
+                    class="shot"
+                    src="https://placehold.co/1200x680/1c2430/566072?text=Manageable+switch+rollout&font=roboto"
+                    alt="Screenshot rollout manageable switch"
+                  />
+                  <p class="shot-caption">// screenshot dummy — ganti src di atas</p>
+                </div>
               </div>
             </div>
           </div>
@@ -879,5 +1078,15 @@
       <span>© 2026 Handi Ibrahim</span>
       <span>Built with care for uptime.</span>
     </footer>
+
+    <script>
+      document.querySelectorAll(".project-toggle").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const card = btn.closest(".project");
+          const isOpen = card.classList.toggle("is-open");
+          btn.setAttribute("aria-expanded", String(isOpen));
+        });
+      });
+    </script>
   </body>
 </html>
