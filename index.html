@@ -830,6 +830,39 @@
           <div class="project">
             <button class="project-toggle" aria-expanded="false">
               <div>
+                <h3>Docker stack</h3>
+                <p>
+                  Multi-service host: Airflow + Postgres + Redis, Metabase,
+                  MariaDB, Portainer, Cloudflare Tunnel. Healthcheck green,
+                  volumes persisten.
+                </p>
+                <div class="tags">
+                  <span>Docker</span><span>Airflow</span><span>Metabase</span>
+                </div>
+              </div>
+              <span class="project-chevron">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="project-panel">
+              <div class="project-panel-inner">
+                <div class="project-detail">
+                  <img
+                    class="shot"
+                    src="container.png"
+                    alt="Screenshot daftar container Docker: Airflow, Postgres, Redis, Metabase, MariaDB, Portainer"
+                  />
+                  <p class="shot-caption">// container stack: airflow, metabase, db, tunnel</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project">
+            <button class="project-toggle" aria-expanded="false">
+              <div>
                 <h3>ContainIQ</h3>
                 <p>
                   Custom Flask-based container monitoring dashboard that polls
@@ -948,6 +981,70 @@
                     alt="Screenshot Tailscale subnet router"
                   />
                   <p class="shot-caption">// Tailscale subnet router</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project">
+            <button class="project-toggle" aria-expanded="false">
+              <div>
+                <h3>Cloudflare Tunnel</h3>
+                <p>
+                  Expose internal services without public IP. Four cloudflared
+                  connectors Healthy, uptime 21 hours to 61 days.
+                </p>
+                <div class="tags">
+                  <span>Cloudflare</span><span>Tunnel</span><span>Zero Trust</span>
+                </div>
+              </div>
+              <span class="project-chevron">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="project-panel">
+              <div class="project-panel-inner">
+                <div class="project-detail">
+                  <img
+                    class="shot"
+                    src="cf-tunnel.png"
+                    alt="Screenshot Cloudflare Tunnel list, tunnel names blurred, status Healthy"
+                  />
+                  <p class="shot-caption">// cloudflare tunnels, names redacted</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project">
+            <button class="project-toggle" aria-expanded="false">
+              <div>
+                <h3>AI gateway routing</h3>
+                <p>
+                  Route AI traffic through one 9Router hub to multiple
+                  providers: OpenCode, OpenRouter, NVIDIA NIM, xAI, Kilo, Kiro.
+                </p>
+                <div class="tags">
+                  <span>AI-Gateway</span><span>Routing</span><span>Multi-Provider</span>
+                </div>
+              </div>
+              <span class="project-chevron">
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M8 2v12M2 8h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </button>
+            <div class="project-panel">
+              <div class="project-panel-inner">
+                <div class="project-detail">
+                  <img
+                    class="shot"
+                    src="9router.png"
+                    alt="Routing graph: 9Router hub connected to OpenCode, OpenRouter, NVIDIA NIM, xAI, Kilo, Kiro"
+                  />
+                  <p class="shot-caption">// provider routing graph, usage stats redacted</p>
                 </div>
               </div>
             </div>
